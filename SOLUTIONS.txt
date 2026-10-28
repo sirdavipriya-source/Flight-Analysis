@@ -1,0 +1,112 @@
+==================================================================
+ FLIGHT ANALYSIS - ERROR REPORT & SOLUTIONS
+ (Spring Boot Maven project - demo folder)
+==================================================================
+
+------------------------------------------------------------------
+ERROR DETECTED (from: demo\error.txt)
+------------------------------------------------------------------
+[ERROR] Failed to execute goal on project flight_analysis:
+        Could not resolve dependencies for project com.example:flight_analysis:jar:0.0.1-SNAPSHOT
+[ERROR] dependency: com.jayway.jsonpath:json-path:jar:2.9.0 (test)
+[ERROR] Could not transfer artifact com.jayway.jsonpath:json-path:jar:2.9.0
+        from/to central (https://repo.maven.apache.org/maven2):
+        C:\Users\Bharath Balaji H\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\json-path-2.9.0.jar:
+        The requested operation cannot be performed on a file with a user-mapped section open
+[ERROR] -> [Help 1]   (DependencyResolutionException)
+==================================================================
+
+WHAT THIS MEANS
+------------------------------------------------------------------
+The Maven build FAILS at the "download / resolve dependencies" step,
+NOT because of any code mistake. The JSON-path 2.9.0 .jar file in your
+local Maven cache is corrupt OR is locked by another running program
+(Java, your IDE, OneDrive sync, or antivirus). Because the file is
+locked/mapped, Maven cannot read/write it, so the build aborts.
+
+==================================================================
+SOLUTION - Step by Step (NO code changes needed)
+==================================================================
+
+STEP 1 : Close every program that might be holding the file open.
+------------------------------------------------------------------
+   - Stop the running Spring Boot / Java process (if any).
+   - Close your IDE (VS Code / IntelliJ) and any terminal windows.
+   - If the project folder is inside OneDrive (it is: ...Desktop\MY MAVEN),
+     PAUSE OneDrive syncing temporarily (OneDrive icon -> Pause syncing).
+     OneDrive is a very common cause of this file-lock error.
+
+STEP 2 : Delete the corrupt / locked files in the local Maven cache.
+------------------------------------------------------------------
+   Perfect directory (exact path):
+   C:\Users\Bharath Balaji H\.m2\repository\com\jayway\jsonpath\json-path\2.9.0\
+
+   Inside that folder delete ALL of these files:
+     - json-path-2.9.0.jar
+     - json-path-2.9.0.jar.6740178520552729680.tmp   (leftover temp file)
+     - json-path-2.9.0.jar.lastUpdated               (failed-download marker)
+     - json-path-2.9.0.jar.sha1
+     - _remote.repositories
+     - json-path-2.9.0.pom
+     - json-path-2.9.0.pom.sha1
+   (Simplest: delete the whole "2.9.0" folder.)
+   Deleting these is SAFE - Maven simply re-downloads them from the internet.
+   This does NOT touch your project source code in the "demo" folder.
+
+   Quick PowerShell command (run from any window):
+   Remove-Item -Recurse -Force "C:\Users\Bharath Balaji H\.m2\repository\com\jayway\jsonpath\json-path"
+
+STEP 3 : Re-run the Maven build (clean + force update).
+------------------------------------------------------------------
+   Open a NEW terminal in this directory:
+   C:\Users\Bharath Balaji H\OneDrive\Documents\Desktop\MY MAVEN\demo
+
+   Run:
+   .\mvnw.cmd clean install -U
+
+   (-U forces Maven to download the newest copy of every dependency.)
+
+STEP 4 : Verify the build & run the app.
+   After a successful build you should see  -> BUILD SUCCESS.
+   To start the application:
+   .\mvnw.cmd spring-boot:run
+   The app runs on port 8082 (see demo\src\main\resources\application.properties).
+   Open the frontend at:  http://localhost:8082/index.html
+
+   NOTE: This app connects to a MySQL database.
+   demo\src\main\resources\application.properties
+     jdbc:mysql://localhost:3306/flight_analysis   (database name: flight_analysis)
+     username: root      password: root
+   Make sure MySQL is running and a database named "flight_analysis"
+   exists, otherwise the app will fail to start at runtime.
+
+==================================================================
+IF THE ERROR STILL HAPPENS AFTER THE STEPS ABOVE
+==================================================================
+  1. Antivirus lock: temporarily disable real-time protection, repeat
+     STEP 2 + STEP 3, then turn it back on. (Windows Defender or any
+     third-party AV can hold the .jar mapped in memory.)
+  2. OneDrive lock: move the whole "MY MAVEN" project OUT of OneDrive,
+     e.g. to C:\projects\MY MAVEN, then run the build again. OneDrive
+     constantly maps/syncs files and is the #1 cause of this exact error.
+  3. Use the -e / -X debugging flags for the full error:
+        .\mvnw.cmd clean install -U -e -X
+  4. Clear the ENTIRE local Maven cache as a last resort (safe, but forces
+     a full re-download of every dependency):
+        Remove-Item -Recurse -Force "C:\Users\Bharath Balaji H\.m2\repository"
+     Then re-run:  .\mvnw.cmd clean install -U
+
+------------------------------------------------------------------
+EXTRA NOTE (NOT causing this build error - for your information)
+------------------------------------------------------------------
+The website expects the fields "duration" and "distance" on every flight
+(see demo\src\main\resources\static\script.js and index.html), but the
+backend model demo\src\main\java\com\example\flight_analysis\model\Flight.java
+currently only has: id, flightNumber, airline, source, destination.
+If you later send a flight with duration/distance, Jackson will ignore the
+extra fields and the table may not show them. This is NOT part of the
+current build failure; I am only flagging it in case you see behaviour
+differences once the app runs. No action is required to fix the build.
+==================================================================
+END OF REPORT
+==================================================================

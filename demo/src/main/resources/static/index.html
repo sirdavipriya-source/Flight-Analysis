@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Flight Analysis Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+<h1>✈ Flight Analysis Dashboard</h1>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+
+
+<div class="container">
+
+
+
+<!-- FLIGHT FORM -->
+
+<div class="form-box">
+
+
+<h2>Add Flight</h2>
+
+
+<input type="hidden" id="flightId">
+
+
+<input 
+type="text" 
+id="flightName" 
+placeholder="Flight Name">
+
+
+
+<input 
+type="text" 
+id="source" 
+placeholder="Source">
+
+
+
+<input 
+type="text" 
+id="destination" 
+placeholder="Destination">
+
+
+
+<input 
+type="number" 
+id="price" 
+placeholder="Price">
+
+
+
+<button onclick="addFlight()">
+Add Flight
+</button>
+
+
+<button onclick="updateFlight()">
+Update Flight
+</button>
+
+
+
+</div>
+
+
+
+
+
+<!-- FLIGHT TABLE -->
+
+<div class="table-box">
+
+
+<h2>Flight Details</h2>
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Flight Name</th>
+
+<th>Source</th>
+
+<th>Destination</th>
+
+<th>Price</th>
+
+<th>Action</th>
+
+
+</tr>
+
+</thead>
+
+
+
+<tbody id="flightTable">
+
+
+</tbody>
+
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- RECORD FORM -->
+
+<div class="form-box">
+
+
+<h2>Add Flight Record</h2>
+
+
+
+<input 
+type="hidden" 
+id="recordId">
+
+
+
+<input 
+type="number" 
+id="flightIdRecord" 
+placeholder="Flight ID">
+
+
+
+<input 
+type="text" 
+id="passengerName" 
+placeholder="Passenger Name">
+
+
+
+<input 
+type="text" 
+id="seatNo" 
+placeholder="Seat Number">
+
+
+
+<input 
+type="text" 
+id="travelDate" 
+placeholder="Travel Date">
+
+
+
+<button onclick="addRecord()">
+Add Record
+</button>
+
+
+
+<button onclick="updateRecord()">
+Update Record
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- RECORD TABLE -->
+
+
+<div class="table-box">
+
+
+<h2>Flight Records</h2>
+
+
+
+<table>
+
+
+<thead>
+
+
+<tr>
+
+<th>ID</th>
+
+<th>Flight ID</th>
+
+<th>Passenger</th>
+
+<th>Seat</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody id="recordTable">
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-08-06T15:01:28.795+05:30  INFO 17852 --- [flight_analysis] [           main] c.e.f.FlightAnalysisApplication          : Starting FlightAnalysisApplication v0.0.1-SNAPSHOT using Java 24.0.1 with PID 17852 (C:\Users\Bharath Balaji H\OneDrive\Documents\Desktop\MY MAVEN\demo\target\flight_analysis-0.0.1-SNAPSHOT.jar started by Bharath Balaji H in C:\Users\Bharath Balaji H\OneDrive\Documents\Desktop\MY MAVEN\demo)
+2026-08-06T15:01:28.818+05:30  INFO 17852 --- [flight_analysis] [           main] c.e.f.FlightAnalysisApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-08-06T15:01:30.565+05:30  INFO 17852 --- [flight_analysis] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-06T15:01:30.738+05:30  INFO 17852 --- [flight_analysis] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 132 ms. Found 2 JPA repository interfaces.
+2026-08-06T15:01:32.000+05:30  INFO 17852 --- [flight_analysis] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2026-08-06T15:01:32.037+05:30  INFO 17852 --- [flight_analysis] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-06T15:01:32.038+05:30  INFO 17852 --- [flight_analysis] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-08-06T15:01:32.124+05:30  INFO 17852 --- [flight_analysis] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-06T15:01:32.126+05:30  INFO 17852 --- [flight_analysis] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3115 ms
+2026-08-06T15:01:32.958+05:30  INFO 17852 --- [flight_analysis] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-06T15:01:33.166+05:30  INFO 17852 --- [flight_analysis] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.53.Final
+2026-08-06T15:01:33.265+05:30  INFO 17852 --- [flight_analysis] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-08-06T15:01:34.069+05:30  INFO 17852 --- [flight_analysis] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-06T15:01:34.216+05:30  INFO 17852 --- [flight_analysis] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-06T15:01:34.855+05:30  INFO 17852 --- [flight_analysis] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@223967ea
+2026-08-06T15:01:34.858+05:30  INFO 17852 --- [flight_analysis] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-06T15:01:35.027+05:30  INFO 17852 --- [flight_analysis] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.46
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-06T15:01:36.509+05:30  INFO 17852 --- [flight_analysis] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: alter table flight modify column airline varchar(255)
+Hibernate: alter table flight modify column destination varchar(255)
+Hibernate: alter table flight add column distance varchar(255)
+Hibernate: alter table flight add column duration varchar(255)
+Hibernate: alter table flight modify column flight_number varchar(255)
+Hibernate: alter table flight modify column source varchar(255)
+Hibernate: alter table flight_record modify column flight_number varchar(255)
+Hibernate: alter table flight_record modify column passenger_name varchar(255)
+Hibernate: alter table flight_record modify column status varchar(255)
+2026-08-06T15:01:37.039+05:30  INFO 17852 --- [flight_analysis] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-06T15:01:37.790+05:30  WARN 17852 --- [flight_analysis] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-06T15:01:37.833+05:30  INFO 17852 --- [flight_analysis] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-08-06T15:01:38.275+05:30  WARN 17852 --- [flight_analysis] [           main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2026-08-06T15:01:38.543+05:30  INFO 17852 --- [flight_analysis] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-08-06T15:01:38.580+05:30  INFO 17852 --- [flight_analysis] [           main] c.e.f.FlightAnalysisApplication          : Started FlightAnalysisApplication in 11.177 seconds (process running for 12.41)
+2026-08-06T15:04:58.074+05:30  INFO 17852 --- [flight_analysis] [nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-06T15:04:58.076+05:30  INFO 17852 --- [flight_analysis] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-06T15:04:58.078+05:30  INFO 17852 --- [flight_analysis] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Hibernate: select f1_0.id,f1_0.airline,f1_0.destination,f1_0.distance,f1_0.duration,f1_0.flight_number,f1_0.source from flight f1_0
+Hibernate: insert into flight (airline,destination,distance,duration,flight_number,source) values (?,?,?,?,?,?)
+Hibernate: select f1_0.id,f1_0.airline,f1_0.destination,f1_0.distance,f1_0.duration,f1_0.flight_number,f1_0.source from flight f1_0 where f1_0.id=?
+Hibernate: delete from flight where id=?
+2026-08-06T15:22:15.515+05:30  WARN 17852 --- [flight_analysis] [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m2s692ms440µs600ns).
